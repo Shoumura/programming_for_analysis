@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #define smura 1000
+#define shomura 10000
 
 #define N 260 // the maximum number of charactors in a line (the number of bytes) !!!! ## if N is more than 256, this program does NOT work @ IMS (9501)
 #define L 500 // the maximum number of charactor array
