@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#define smura 1000
 
 #define N 260 // the maximum number of charactors in a line (the number of bytes) !!!! ## if N is more than 256, this program does NOT work @ IMS (9501)
 #define L 500 // the maximum number of charactor array
@@ -18,26 +19,26 @@ my memo
 
 # Options
 > crystal mode is automatically aplied.  ;for TV system
-> option: "scaled output" "-o"   ;EQƒŠƒXƒg‚ğƒXƒP[ƒŠƒ“ƒO‚·‚é
-> option: "composition sort" "-c"   ;EQ‚ÆƒpƒX‚ğ‘g¬•Ê‚É•ª—Ş‚µALUPŒvZ‚µ‚â‚·‚¢‚æ‚¤‚Éƒtƒ@ƒCƒŠƒ“ƒO‚·‚é
-** “f‚«o‚·ƒtƒ@ƒCƒ‹‚Í"EQCS_[JOBNAME]_xxx.log"‚Æ‚·‚é
+> option: "scaled output" "-o"   ;EQãƒªã‚¹ãƒˆã‚’ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã™ã‚‹
+> option: "composition sort" "-c"   ;EQã¨ãƒ‘ã‚¹ã‚’çµ„æˆåˆ¥ã«åˆ†é¡ã—ã€LUPè¨ˆç®—ã—ã‚„ã™ã„ã‚ˆã†ã«ãƒ•ã‚¡ã‚¤ãƒªãƒ³ã‚°ã™ã‚‹
+** åãå‡ºã™ãƒ•ã‚¡ã‚¤ãƒ«ã¯"EQCS_[JOBNAME]_xxx.log"ã¨ã™ã‚‹
 
-> atomname_TVexcluded ‚É‚Í[1]‚©‚çŒ´q–¼‚ğŠi”[‚µ‚Ä‚¢‚éi[0]‚Ì’†g‚Í‹ój
+> atomname_TVexcluded ã«ã¯[1]ã‹ã‚‰åŸå­åã‚’æ ¼ç´ã—ã¦ã„ã‚‹ï¼ˆ[0]ã®ä¸­èº«ã¯ç©ºï¼‰
 
-> •Ï” babel_compositionnum ‚Í”p~‚µAinchi•\‹L‚É“ˆê‚·‚éicansmi‚Å‚Í…‘fŒ‹‡‚Ì”zŒü‚Ü‚Å‹æ•Ê‚µ‚Ä‚µ‚Ü‚¤‚½‚ßj
-> Iseq ‚Íinchi_composition_groupnum ‚ÉŠi”[‚µ‚Ä‚¢‚éibabel‚É‚æ‚ésort‚Í‚±‚ê‚É]‚Á‚Ä‚¢‚éj
+> å¤‰æ•° babel_compositionnum ã¯å»ƒæ­¢ã—ã€inchiè¡¨è¨˜ã«çµ±ä¸€ã™ã‚‹ï¼ˆcansmiã§ã¯æ°´ç´ çµåˆã®é…å‘ã¾ã§åŒºåˆ¥ã—ã¦ã—ã¾ã†ãŸã‚ï¼‰
+> Iseq ã¯inchi_composition_groupnum ã«æ ¼ç´ã—ã¦ã„ã‚‹ï¼ˆbabelã«ã‚ˆã‚‹sortã¯ã“ã‚Œã«å¾“ã£ã¦ã„ã‚‹ï¼‰
 
-> LUP,TSEPT‚É‘Î‰(9425 planned)
-> LUP‚Ì’[“_ATSEPT‚Ì’[“_‚ğ•ª—Ş‚µ‚½‚¢
+> LUP,TSãƒ»PTã«å¯¾å¿œ(9425 planned)
+> LUPã®ç«¯ç‚¹ã€TSãƒ»PTã®ç«¯ç‚¹ã‚’åˆ†é¡ã—ãŸã„
 
-> DC_list ‚É‘Î‰‚µ‚½‚¢(9511 planned)
+> DC_list ã«å¯¾å¿œã—ãŸã„(9511 planned)
 
-#9715 CIFƒtƒ@ƒCƒ‹‚ğ¶¬‚Å‚«‚é‚æ‚¤‚É‰ü—Ç
-#9821 DOSŒvZ—p‚Ìinp‚ğ¶¬‚·‚é‚æ‚¤‚É‰ü—Ç
+#9715 CIFãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆã§ãã‚‹ã‚ˆã†ã«æ”¹è‰¯
+#9821 DOSè¨ˆç®—ç”¨ã®inpã‚’ç”Ÿæˆã™ã‚‹ã‚ˆã†ã«æ”¹è‰¯
 
 */
 
-////// original functions@// "strcount(char *str1, char *str2)" search *str2 in *str1  // equal to strcmp
+////// original functionsã€€// "strcount(char *str1, char *str2)" search *str2 in *str1  // equal to strcmp
 double radius(char *);
 int digit(int);
 int strcount(char *, char *);
@@ -162,7 +163,7 @@ int main(int argc, char* argv[]) {
         cifgen_option = 1;
       }else if( strcmp( argv[temp_option_num] , "-dos" ) == 0 || strcmp( argv[temp_option_num] , "-Dos" ) == 0 || strcmp( argv[temp_option_num] , "-DOS" ) == 0 ){ // added 9613
         forDOSinpgen_option = 1;
-        // ‚»‚Ì‚¤‚¿.inpƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚ÅQÆ‚Å‚«‚é‚æ‚¤‚É‰ü—Ç‚·‚é‚©‚à(9821l‚¦’†)
+        // ãã®ã†ã¡.inpãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§å‚ç…§ã§ãã‚‹ã‚ˆã†ã«æ”¹è‰¯ã™ã‚‹ã‹ã‚‚(9821è€ƒãˆä¸­)
       }else if( strcmp( argv[temp_option_num] , "-dosk" ) == 0 || strcmp( argv[temp_option_num] , "-Dosk" ) == 0 || strcmp( argv[temp_option_num] , "-DOSk" ) == 0 ){ // added 9613
         if( argc < temp_option_num + 4 ){
           printf( "%s Usage : \"%s [JOBNAME] [option]\" (%s)%s%s", asterisk, argv[0], software_version, usage, asterisk );
@@ -984,7 +985,7 @@ int main(int argc, char* argv[]) {
       return -1;
     }
   }
-/*  ì‚è‚©‚¯(9728)
+/*  ä½œã‚Šã‹ã‘(9728)
   if( rearranged_EQlist_output_option == 1 ){
     sprintf(rearranged_EQlist_filename, "EQCS_%s_arr_EQ_list.log", JOBNAME);
     rearrangedEQlist = fopen(rearranged_EQlist_filename,"w"); //open the output file
@@ -1425,7 +1426,7 @@ int main(int argc, char* argv[]) {
     }
     for(k = 0;k < totalEQnum ;k++){
       for(m = 0;m < totalEQnum ;m++){
-        if( Energy_rank_EQnum[m] == k ){ // m”Ô–Ú‚ÉƒGƒlƒ‹ƒM[‚ª’á‚¢EQ#‚ªk‚Ì‚Æ‚«
+        if( Energy_rank_EQnum[m] == k ){ // mç•ªç›®ã«ã‚¨ãƒãƒ«ã‚®ãƒ¼ãŒä½ã„EQ#ãŒkã®ã¨ã
           if( density_sort_mode == 1 ){
             fprintf(energy_sort," %*d \tEQ %-*d \t%12.7lf ( %17.12lf : %6.3lf )\n", totalEQ_digitnum, k+1, totalEQ_digitnum, Energy_rank_EQnum[k], (sorted_Bare_Energy[k] - sorted_Bare_Energy[0]) * 2625.49962, sorted_Bare_Energy[k], cell_density[Energy_rank_EQnum[k]]); // (9419 added)
           }else{
