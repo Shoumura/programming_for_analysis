@@ -8,6 +8,7 @@
 #define K 500 // the maximum number of charactor array
 #define MAX 10000 // the maximum number of atoms in the system
 
+#define buffer 256
 /// ### EQ composition and structure sorting tool ### ///
 
 /*
